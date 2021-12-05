@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyHealth : MonoBehaviour
 {
     public int startHealth = 100;
+    public int score = 10;
     private int currentHealth;
     private Animator animator;
     private bool isDead;
@@ -33,6 +34,8 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyMovent>().enabled = false;
         GetComponent<EnemyAttack>().enabled = false;
+
+        ScoreManager.score += score;
     }
 
     public void TakeDamage(int amount, Vector3 position)
