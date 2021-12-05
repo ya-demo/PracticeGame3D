@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public int damageOerShot = 20;
+    public int damagePerShot = 20;
     public float range = 100f;
     private Ray shootRay;
     private RaycastHit shootHit;
@@ -42,6 +42,8 @@ public class PlayerShooting : MonoBehaviour
 
         if(Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
+            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(damagePerShot, shootHit.point);
             gunLine.SetPosition(1, shootHit.point);
         }else{
             gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
